@@ -22,5 +22,20 @@ class BowlingTddTests: QuickSpec {
                 expect(sut.getPlayerCount()).to(equal(3))
             }
         }
+
+        describe("getScore") {
+            context("when index is invalid") {
+                it("should return nil") {
+                    expect(sut.getScore(ofPlayer: -1)).to(beNil())
+                    expect(sut.getScore(ofPlayer: 1000)).to(beNil())
+                }
+            }
+
+            context("before any rolls") {
+                it("should return 0") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(0))
+                }
+            }
+        }
     }
 }
