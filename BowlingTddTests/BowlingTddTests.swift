@@ -36,6 +36,16 @@ class BowlingTddTests: QuickSpec {
                     expect(sut.getScore(ofPlayer: 0)).to(equal(0))
                 }
             }
+
+            context("after one roll of 1") {
+                beforeEach {
+                    sut.roll(knockOver: 1)
+                }
+
+                it("should return 1") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(1))
+                }
+            }
         }
     }
 }
