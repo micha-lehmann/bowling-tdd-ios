@@ -5,9 +5,6 @@ public protocol Bowling {
 }
 
 public struct BowlingGame: Bowling {
-    private let playerCount: Int
-    private var scores: [Int]
-
     public init(withPlayers amount: Int) {
         playerCount = amount
         scores = Array(repeating: 0, count: playerCount)
@@ -26,5 +23,9 @@ public struct BowlingGame: Bowling {
     public mutating func roll(knockOver amount: Int) {
         scores[0] += amount
     }
+
+
+    private let playerCount: Int
+    private var scores: [Int]
 }
 
