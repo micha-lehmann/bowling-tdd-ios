@@ -70,6 +70,10 @@ public struct BowlingGame: Bowling {
         resetPins()
     }
 
+    private func isStrike(_ amount: Int) -> Bool {
+        return amount == pinCount
+    }
+
     private mutating func handleStrike() {
         if doubledRolls[0] == 1 {
             tripledRolls[0] = 1
@@ -80,10 +84,6 @@ public struct BowlingGame: Bowling {
 
     private mutating func handleSpare() {
         doubledRolls[0] = 1
-    }
-
-    private func isStrike(_ amount: Int) -> Bool {
-        return amount == pinCount
     }
 
     private mutating func resetPins() {
