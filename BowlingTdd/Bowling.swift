@@ -8,7 +8,9 @@ public protocol Bowling {
 }
 
 public struct BowlingGame: Bowling {
-    public init(withPlayers amount: Int) {
+    public init?(withPlayers amount: Int) {
+        guard amount > 0 else {return nil}
+
         playerCount = amount
         scores = Array(repeating: 0, count: playerCount)
         doubledRolls = Array(repeating: 0, count: playerCount)

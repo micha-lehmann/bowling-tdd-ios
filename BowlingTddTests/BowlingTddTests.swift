@@ -10,6 +10,17 @@ class BowlingTddTests: QuickSpec {
             sut = BowlingGame(withPlayers: 2)
         }
 
+        describe("init") {
+            it("returns nil when amount of players is 0") {
+                expect(BowlingGame(withPlayers: 0)).to(beNil())
+            }
+
+            it("returns nil when amount of players is negative") {
+                expect(BowlingGame(withPlayers: -1)).to(beNil())
+                expect(BowlingGame(withPlayers: -50)).to(beNil())
+            }
+        }
+
         describe("getPlayerCount") {
             it("returns amountOfPlayers") {
                 sut = BowlingGame(withPlayers: 1)
