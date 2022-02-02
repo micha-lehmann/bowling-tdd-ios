@@ -24,6 +24,10 @@ class BowlingTddTests: QuickSpec {
         }
 
         describe("getScore") {
+            beforeEach {
+                sut = BowlingGame(withPlayers: 1)
+            }
+
             context("when index is invalid") {
                 it("returns nil") {
                     expect(sut.getScore(ofPlayer: -1)).to(beNil())
@@ -44,6 +48,27 @@ class BowlingTddTests: QuickSpec {
 
                 it("returns 1") {
                     expect(sut.getScore(ofPlayer: 0)).to(equal(1))
+                }
+            }
+
+            context("after two rolls of 1") {
+                beforeEach {
+                    sut.roll(knockOver: 1)
+                    sut.roll(knockOver: 1)
+                }
+
+                it("returns 2") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(2))
+                }
+            }
+
+            context("after one strike") {
+                beforeEach {
+                    sut.roll(knockOver: 10)
+                }
+
+                it("returns 10") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(10))
                 }
             }
         }
