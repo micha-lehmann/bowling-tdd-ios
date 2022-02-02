@@ -131,6 +131,66 @@ class BowlingTddTests: QuickSpec {
                     expect(sut.getScore(ofPlayer: 0)).to(equal(score + 3))
                 }
             }
+
+            context("after one spare") {
+                var score: Int!
+
+                beforeEach {
+                    sut.roll(knockOver: sut.pinCount - 4)
+                    sut.roll(knockOver: 4)
+
+                    score = sut.getScore(ofPlayer: 0)
+                }
+
+                it("returns pinCount") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(sut.pinCount))
+                }
+
+                it("doubles the next roll") {
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 2))
+                }
+
+                it("does not double the next next roll") {
+                    sut.roll(knockOver: 1)
+
+                    score = sut.getScore(ofPlayer: 0)
+
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 1))
+                }
+            }
+
+            context("after two spares") {
+                var score: Int!
+
+                beforeEach {
+                    for _ in 1...2 {
+                        sut.roll(knockOver: sut.pinCount - 2)
+                        sut.roll(knockOver: 2)
+                    }
+
+                    score = sut.getScore(ofPlayer: 0)
+                }
+
+                it("doubles the next roll") {
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 2))
+                }
+
+                it("does not double the next next roll") {
+                    sut.roll(knockOver: 1)
+
+                    score = sut.getScore(ofPlayer: 0)
+
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 1))
+                }
+            }
         }
     }
 }

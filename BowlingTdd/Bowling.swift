@@ -13,6 +13,7 @@ public struct BowlingGame: Bowling {
         scores = Array(repeating: 0, count: playerCount)
         doubledRolls = Array(repeating: 0, count: playerCount)
         tripledRolls = Array(repeating: 0, count: playerCount)
+        pinsRemaining = pinCount
     }
 
     public func getPlayerCount() -> Int {
@@ -28,16 +29,14 @@ public struct BowlingGame: Bowling {
     public mutating func roll(knockOver amount: Int) {
         scores[0] += amount
 
+        pinsRemaining -= amount
+
         doDoubledRolls(knockedOver: amount)
         doTripledRolls(knockedOver: amount)
 
-        if isStrike(amount) {
-            if doubledRolls[0] == 1 {
-                tripledRolls[0] = 1
-            }
-
-            doubledRolls[0] = 2
-        } // TODO: else if isSpare(amount)
+        if isClear() {
+            handleClearing(amount)
+        }
     }
 
 
@@ -57,14 +56,45 @@ public struct BowlingGame: Bowling {
         }
     }
 
+    private func isClear() -> Bool {
+        return pinsRemaining == 0
+    }
+
+    private mutating func handleClearing(_ amount: Int) {
+        if isStrike(amount) {
+            handleStrike()
+        } else {
+            handleSpare()
+        }
+
+        resetPins()
+    }
+
+    private mutating func handleStrike() {
+        if doubledRolls[0] == 1 {
+            tripledRolls[0] = 1
+        }
+
+        doubledRolls[0] = 2
+    }
+
+    private mutating func handleSpare() {
+        doubledRolls[0] = 1
+    }
+
     private func isStrike(_ amount: Int) -> Bool {
-        return amount == 10
+        return amount == pinCount
+    }
+
+    private mutating func resetPins() {
+        pinsRemaining = pinCount
     }
 
     private let playerCount: Int
     private var scores: [Int]
     private var doubledRolls: [Int]
     private var tripledRolls: [Int]
+    private var pinsRemaining: Int
 
     public let pinCount = 10
     public let frameCount = 10
