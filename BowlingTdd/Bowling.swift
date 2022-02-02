@@ -11,8 +11,8 @@ public struct BowlingGame: Bowling {
     public init(withPlayers amount: Int) {
         playerCount = amount
         scores = Array(repeating: 0, count: playerCount)
-        doubledThrows = Array(repeating: 0, count: playerCount)
-        tripledThrows = Array(repeating: 0, count: playerCount)
+        doubledRolls = Array(repeating: 0, count: playerCount)
+        tripledRolls = Array(repeating: 0, count: playerCount)
     }
 
     public func getPlayerCount() -> Int {
@@ -28,32 +28,32 @@ public struct BowlingGame: Bowling {
     public mutating func roll(knockOver amount: Int) {
         scores[0] += amount
 
-        doDoubledThrows(knockedOver: amount)
-        doTripledThrows(knockedOver: amount)
+        doDoubledRolls(knockedOver: amount)
+        doTripledRolls(knockedOver: amount)
 
         if isStrike(amount) {
-            if doubledThrows[0] == 1 {
-                tripledThrows[0] = 1
+            if doubledRolls[0] == 1 {
+                tripledRolls[0] = 1
             }
 
-            doubledThrows[0] = 2
+            doubledRolls[0] = 2
         } // TODO: else if isSpare(amount)
     }
 
 
-    private mutating func doDoubledThrows(knockedOver amount: Int) {
-        if doubledThrows[0] > 0 {
+    private mutating func doDoubledRolls(knockedOver amount: Int) {
+        if doubledRolls[0] > 0 {
             scores[0] += amount
 
-            doubledThrows[0] -= 1
+            doubledRolls[0] -= 1
         }
     }
 
-    private mutating func doTripledThrows(knockedOver amount: Int) {
-        if tripledThrows[0] > 0 {
+    private mutating func doTripledRolls(knockedOver amount: Int) {
+        if tripledRolls[0] > 0 {
             scores[0] += amount
 
-            tripledThrows[0] -= 1
+            tripledRolls[0] -= 1
         }
     }
 
@@ -63,8 +63,8 @@ public struct BowlingGame: Bowling {
 
     private let playerCount: Int
     private var scores: [Int]
-    private var doubledThrows: [Int]
-    private var tripledThrows: [Int]
+    private var doubledRolls: [Int]
+    private var tripledRolls: [Int]
 
     public let pinCount = 10
     public let frameCount = 10
