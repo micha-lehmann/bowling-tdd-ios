@@ -71,8 +71,8 @@ class BowlingTddTests: QuickSpec {
                     score = sut.getScore(ofPlayer: 0)
                 }
 
-                it("returns pinCount") {
-                    expect(sut.getScore(ofPlayer: 0)).to(equal(sut.pinCount))
+                it("returns 10") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(10))
                 }
 
                 it("doubles the next roll") {
@@ -99,8 +99,8 @@ class BowlingTddTests: QuickSpec {
                     score = sut.getScore(ofPlayer: 0)
                 }
 
-                it("returns pinCount * 3") {
-                    expect(sut.getScore(ofPlayer: 0)).to(equal(sut.pinCount * 3))
+                it("returns 30") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(30))
                 }
 
                 it("triples the next roll") {
@@ -121,8 +121,8 @@ class BowlingTddTests: QuickSpec {
                     score = sut.getScore(ofPlayer: 0)
                 }
 
-                it("returns pinCount * 6") {
-                    expect(sut.getScore(ofPlayer: 0)).to(equal(sut.pinCount * 6))
+                it("returns 60") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(60))
                 }
 
                 it("triples the next roll") {
@@ -142,8 +142,8 @@ class BowlingTddTests: QuickSpec {
                     score = sut.getScore(ofPlayer: 0)
                 }
 
-                it("returns pinCount") {
-                    expect(sut.getScore(ofPlayer: 0)).to(equal(sut.pinCount))
+                it("returns 10") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(10))
                 }
 
                 it("doubles the next roll") {
