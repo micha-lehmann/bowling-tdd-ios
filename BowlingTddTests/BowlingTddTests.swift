@@ -203,6 +203,25 @@ class BowlingTddTests: QuickSpec {
                     }
                 }
             }
+
+            context("with multiple players") {
+                beforeEach {
+                    sut = BowlingGame(withPlayers: 2)
+                }
+
+                it("keeps track of the scores individually") {
+                    sut.roll(knockOver: 10)
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(10))
+
+                    sut.roll(knockOver: 6)
+                    expect(sut.getScore(ofPlayer: 1)).to(equal(6))
+
+                    sut.roll(knockOver: 2)
+                    expect(sut.getScore(ofPlayer: 1)).to(equal(8))
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(10))
+                }
+            }
         }
     }
 }

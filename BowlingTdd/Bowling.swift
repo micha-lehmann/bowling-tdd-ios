@@ -27,7 +27,7 @@ public struct BowlingGame: Bowling {
     }
 
     public mutating func roll(knockOver amount: Int) {
-        scores[0] += amount
+        scores[currentPlayer] += amount
 
         pinsRemaining -= amount
 
@@ -41,18 +41,18 @@ public struct BowlingGame: Bowling {
 
 
     private mutating func doDoubledRolls(knockedOver amount: Int) {
-        if doubledRolls[0] > 0 {
-            scores[0] += amount
+        if doubledRolls[currentPlayer] > 0 {
+            scores[currentPlayer] += amount
 
-            doubledRolls[0] -= 1
+            doubledRolls[currentPlayer] -= 1
         }
     }
 
     private mutating func doTripledRolls(knockedOver amount: Int) {
-        if tripledRolls[0] > 0 {
-            scores[0] += amount
+        if tripledRolls[currentPlayer] > 0 {
+            scores[currentPlayer] += amount
 
-            tripledRolls[0] -= 1
+            tripledRolls[currentPlayer] -= 1
         }
     }
 
@@ -67,6 +67,7 @@ public struct BowlingGame: Bowling {
             handleSpare()
         }
 
+        currentPlayer += 1
         resetPins()
     }
 
@@ -75,19 +76,26 @@ public struct BowlingGame: Bowling {
     }
 
     private mutating func handleStrike() {
-        if doubledRolls[0] == 1 {
-            tripledRolls[0] = 1
+        if doubledRolls[currentPlayer] == 1 {
+            tripledRolls[currentPlayer] = 1
         }
 
-        doubledRolls[0] = 2
+        doubledRolls[currentPlayer] = 2
     }
 
     private mutating func handleSpare() {
-        doubledRolls[0] = 1
+        doubledRolls[currentPlayer] = 1
     }
 
     private mutating func resetPins() {
         pinsRemaining = pinCount
+    }
+
+    private var currentPlayer: Int = 0 {
+        // Truthfully, I only did this because it's cool 😎
+        didSet {
+            currentPlayer %= playerCount
+        }
     }
 
     private let playerCount: Int
