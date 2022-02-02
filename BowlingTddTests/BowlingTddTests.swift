@@ -63,12 +63,72 @@ class BowlingTddTests: QuickSpec {
             }
 
             context("after one strike") {
+                var score: Int!
+
                 beforeEach {
                     sut.roll(knockOver: sut.pinCount)
+
+                    score = sut.getScore(ofPlayer: 0)
                 }
 
-                it("returns 10") {
-                    expect(sut.getScore(ofPlayer: 0)).to(equal(10))
+                it("returns pinCount") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(sut.pinCount))
+                }
+
+                it("doubles the next roll") {
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 2))
+                }
+
+                it("returns doubles the next two rolls") {
+                    sut.roll(knockOver: 1)
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 4))
+                }
+            }
+
+            context("after two strikes") {
+                var score: Int!
+
+                beforeEach {
+                    sut.roll(knockOver: sut.pinCount)
+                    sut.roll(knockOver: sut.pinCount)
+
+                    score = sut.getScore(ofPlayer: 0)
+                }
+
+                it("returns pinCount * 3") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(sut.pinCount * 3))
+                }
+
+                it("triples the next roll") {
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 3))
+                }
+            }
+
+            context("after three strikes") {
+                var score: Int!
+
+                beforeEach {
+                    sut.roll(knockOver: sut.pinCount)
+                    sut.roll(knockOver: sut.pinCount)
+                    sut.roll(knockOver: sut.pinCount)
+
+                    score = sut.getScore(ofPlayer: 0)
+                }
+
+                it("returns pinCount * 6") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(sut.pinCount * 6))
+                }
+
+                it("triples the next roll") {
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 3))
                 }
             }
         }
