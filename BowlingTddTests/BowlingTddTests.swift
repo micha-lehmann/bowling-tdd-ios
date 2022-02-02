@@ -81,7 +81,7 @@ class BowlingTddTests: QuickSpec {
                     expect(sut.getScore(ofPlayer: 0)).to(equal(score + 2))
                 }
 
-                it("returns doubles the next two rolls") {
+                it("doubles the next two rolls") {
                     sut.roll(knockOver: 1)
                     sut.roll(knockOver: 1)
 
