@@ -64,7 +64,7 @@ class BowlingTddTests: QuickSpec {
 
             context("after one strike") {
                 beforeEach {
-                    sut.roll(knockOver: 10)
+                    sut.roll(knockOver: sut.pinCount)
                 }
 
                 it("returns 10") {

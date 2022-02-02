@@ -2,6 +2,9 @@ public protocol Bowling {
     func getPlayerCount() -> Int
     func getScore(ofPlayer: Array.Index) -> Int?
     mutating func roll(knockOver: Int)
+
+    var pinCount: Int {get}
+    var frameCount: Int {get}
 }
 
 public struct BowlingGame: Bowling {
@@ -27,5 +30,8 @@ public struct BowlingGame: Bowling {
 
     private let playerCount: Int
     private var scores: [Int]
+
+    public let pinCount = 10
+    public let frameCount = 10
 }
 
