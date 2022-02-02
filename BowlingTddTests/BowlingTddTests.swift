@@ -191,6 +191,18 @@ class BowlingTddTests: QuickSpec {
                     expect(sut.getScore(ofPlayer: 0)).to(equal(score + 1))
                 }
             }
+
+            context("after a perfect game") {
+                beforeEach {
+                    for _ in 1...12 {
+                        sut.roll(knockOver: sut.pinCount)
+                    }
+
+                    it("returns 300") {
+                        expect(sut.getScore(ofPlayer: 0)).to(equal(300))
+                    }
+                }
+            }
         }
     }
 }
