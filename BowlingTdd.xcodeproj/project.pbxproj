@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8A0B41F727A83DDD00B707D5 /* BowlingTdd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0B41EE27A83DDD00B707D5 /* BowlingTdd.framework */; };
 		8A0B41FC27A83DDD00B707D5 /* BowlingTddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B41FB27A83DDD00B707D5 /* BowlingTddTests.swift */; };
-		8A0B41FD27A83DDD00B707D5 /* BowlingTdd.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A0B41F127A83DDD00B707D5 /* BowlingTdd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8A0B420727A83E3500B707D5 /* Bowling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0B420627A83E3500B707D5 /* Bowling.swift */; };
 		B6BA5098456A7403288FED3F /* Pods_BowlingTddTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B69463413079CDE2574F554 /* Pods_BowlingTddTests.framework */; };
 /* End PBXBuildFile section */
@@ -28,7 +27,6 @@
 		35ECDEA35DA4292F06D67769 /* Pods-BowlingTddTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BowlingTddTests.debug.xcconfig"; path = "Target Support Files/Pods-BowlingTddTests/Pods-BowlingTddTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B69463413079CDE2574F554 /* Pods_BowlingTddTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BowlingTddTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0B41EE27A83DDD00B707D5 /* BowlingTdd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BowlingTdd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A0B41F127A83DDD00B707D5 /* BowlingTdd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BowlingTdd.h; sourceTree = "<group>"; };
 		8A0B41F627A83DDD00B707D5 /* BowlingTddTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BowlingTddTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0B41FB27A83DDD00B707D5 /* BowlingTddTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingTddTests.swift; sourceTree = "<group>"; };
 		8A0B420627A83E3500B707D5 /* Bowling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bowling.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 		8A0B41F027A83DDD00B707D5 /* BowlingTdd */ = {
 			isa = PBXGroup;
 			children = (
-				8A0B41F127A83DDD00B707D5 /* BowlingTdd.h */,
 				8A0B420627A83E3500B707D5 /* Bowling.swift */,
 			);
 			path = BowlingTdd;
@@ -116,7 +113,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A0B41FD27A83DDD00B707D5 /* BowlingTdd.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
