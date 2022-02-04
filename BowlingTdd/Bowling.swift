@@ -1,6 +1,6 @@
 public protocol Bowling {
     func getPlayerCount() -> Int
-    func getScore(ofPlayer: Array.Index) -> Int?
+    func getScore(ofPlayer: Int) -> Int?
     mutating func roll(knockOver: Int)
 
     var pinCount: Int {get}
@@ -22,7 +22,7 @@ public struct BowlingGame: Bowling {
         return playerCount
     }
 
-    public func getScore(ofPlayer index: Array.Index) -> Int? {
+    public func getScore(ofPlayer index: Int) -> Int? {
         guard scores.indices.contains(index) else {return nil}
 
         return scores[index]
