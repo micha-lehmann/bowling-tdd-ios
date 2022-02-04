@@ -39,6 +39,9 @@ public struct BowlingGame: Bowling {
         handleTurns(knockedOver: amount)
     }
 
+    public let pinCount = 10
+    public let frameCount = 10
+
 
     private mutating func doDoubledRolls(knockedOver amount: Int) {
         if doubledRolls[currentPlayer] > 0 {
@@ -122,8 +125,4 @@ public struct BowlingGame: Bowling {
     private var pinsRemaining: Int
     private var currentRoll = 0
     private let maxRollsInTurn = 2
-
-    public let pinCount = 10
-    public let frameCount = 10
 }
-
