@@ -36,9 +36,7 @@ public struct BowlingGame: Bowling {
         doDoubledRolls(knockedOver: amount)
         doTripledRolls(knockedOver: amount)
 
-        if isClear() {
-            handleClearing(amount)
-        }
+        handleTurns(knockedOver: amount)
     }
 
 
@@ -58,23 +56,35 @@ public struct BowlingGame: Bowling {
         }
     }
 
+    private mutating func handleTurns(knockedOver amount: Int) {
+        if isClear() {
+            handleClearing(knockedOver: amount)
+            endTurn()
+        } else {
+            currentRoll += 1
+        }
+        
+        if currentRoll == maxRollsInTurn {
+            endTurn()
+        }
+    }
+
     private func isClear() -> Bool {
         return pinsRemaining == 0
     }
 
-    private mutating func handleClearing(_ amount: Int) {
+    private mutating func handleClearing(knockedOver amount: Int) {
         if isStrike(amount) {
             handleStrike()
         } else {
             handleSpare()
         }
 
-        currentPlayer += 1
         resetPins()
     }
 
     private func isStrike(_ amount: Int) -> Bool {
-        return amount == pinCount
+        return amount == pinCount && currentRoll == 0
     }
 
     private mutating func handleStrike() {
@@ -93,6 +103,11 @@ public struct BowlingGame: Bowling {
         pinsRemaining = pinCount
     }
 
+    private mutating func endTurn() {
+        currentPlayer += 1
+        currentRoll = 0
+    }
+
     private var currentPlayer: Int = 0 {
         // Truthfully, I only did this because it's cool 😎
         didSet {
@@ -105,6 +120,8 @@ public struct BowlingGame: Bowling {
     private var doubledRolls: [Int]
     private var tripledRolls: [Int]
     private var pinsRemaining: Int
+    private var currentRoll = 0
+    private let maxRollsInTurn = 2
 
     public let pinCount = 10
     public let frameCount = 10

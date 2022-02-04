@@ -143,6 +143,37 @@ class BowlingTddTests: QuickSpec {
                 }
             }
 
+            context("after a roll of 0 and a roll of 10") {
+                var score: Int!
+
+                beforeEach {
+                    sut.roll(knockOver: 0)
+                    sut.roll(knockOver: 10)
+
+                    score = sut.getScore(ofPlayer: 0)
+                }
+
+                it("returns 10") {
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(10))
+                }
+
+                it("doubles the next roll") {
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 2))
+                }
+
+                it("does not double the next next roll") {
+                    sut.roll(knockOver: 1)
+
+                    score = sut.getScore(ofPlayer: 0)
+
+                    sut.roll(knockOver: 1)
+
+                    expect(sut.getScore(ofPlayer: 0)).to(equal(score + 1))
+                }
+            }
+
             context("after one spare") {
                 var score: Int!
 
