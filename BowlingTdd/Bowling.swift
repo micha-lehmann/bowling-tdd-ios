@@ -4,7 +4,6 @@ public protocol Bowling {
     mutating func roll(knockOver: Int)
 
     var pinCount: Int {get}
-    var frameCount: Int {get}
 }
 
 public struct BowlingGame: Bowling {
@@ -40,7 +39,6 @@ public struct BowlingGame: Bowling {
     }
 
     public let pinCount = 10
-    public let frameCount = 10
 
 
     private mutating func doDoubledRolls(knockedOver amount: Int) {
